@@ -1,19 +1,30 @@
 package pl.sda.dto;
 
+import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Objects;
 
+@Entity
+@Table(name = "employees")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column
     private String firstName;
+    @Column
     private String lastName;
+    @Column
     private String position;
-    private Integer salary;
-    private Integer birthYear;
+    @Column
+    private Double salary;
+    @Column
+    private LocalDate birthYear;
 
     public Employee() {
     }
 
-    public Employee(Long id, String firstName, String lastName, String position, Integer salary, Integer birthYear) {
+    public Employee(Long id, String firstName, String lastName, String position, Double salary, LocalDate birthYear) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,19 +65,19 @@ public class Employee {
         this.position = position;
     }
 
-    public Integer getSalary() {
+    public Double getSalary() {
         return salary;
     }
 
-    public void setSalary(Integer salary) {
+    public void setSalary(Double salary) {
         this.salary = salary;
     }
 
-    public Integer getBirthYear() {
+    public LocalDate getBirthYear() {
         return birthYear;
     }
 
-    public void setBirthYear(Integer birthYear) {
+    public void setBirthYear(LocalDate birthYear) {
         this.birthYear = birthYear;
     }
 
@@ -86,5 +97,17 @@ public class Employee {
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, position, salary, birthYear);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", position='" + position + '\'' +
+                ", salary=" + salary +
+                ", birthYear=" + birthYear +
+                '}';
     }
 }
